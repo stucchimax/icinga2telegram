@@ -189,7 +189,7 @@ def notification(token, chat, time, timeformat, emoji,
             emoji_emojize = ':green_heart:'
         else:
             emoji_emojize = ':information_source:'
-        emoji_emojized = emojize(emoji_emojize + ' ', use_aliases=True)
+        emoji_emojized = emojize(emoji_emojize + ' ')
     else:
         emoji_emojized = ''
 

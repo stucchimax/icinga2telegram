@@ -88,7 +88,7 @@ def handler_acknowledge(_, update):
             acknowledge_host(spool_content['hostname'], update.callback_query.from_user.mention_markdown())
 
         update.callback_query.message.edit_text(update.callback_query.message.text_markdown,
-                                                parse_mode = telegram.ParseMode.MARKDOWN,
+                                                parse_mode = "MarkdownV2",
                                                 disable_web_page_preview = True)
         pathlib.Path(spool_file_path).unlink()
     except Exception as e:
@@ -227,13 +227,13 @@ Date: {{ time }}
                                    notification_comment = notification_comment, icingaweb2url = icingaweb2url)
 
     bot = telegram.Bot(token=token)
-    message = bot.send_message(chat, message_text, parse_mode=telegram.ParseMode.MARKDOWN, disable_web_page_preview=True)
+    message = bot.send_message(chat, message_text, parse_mode="MarkdownV2", disable_web_page_preview=True)
 
     if notification_type == 'PROBLEM' and ack:
         keyboard = [[telegram.InlineKeyboardButton('Acknowledge', callback_data=message.message_id)]]
         reply_markup = telegram.InlineKeyboardMarkup(keyboard)
 
-        message.edit_text(message_text, parse_mode=telegram.ParseMode.MARKDOWN, disable_web_page_preview=True, reply_markup=reply_markup)
+        message.edit_text(message_text, parse_mode="MarkdownV2", disable_web_page_preview=True, reply_markup=reply_markup)
 
         if servicename:
             spool_content = {
